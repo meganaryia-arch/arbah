@@ -4,7 +4,8 @@ Application settings and configuration.
 
 from typing import List
 
-from pydantic import AnyHttpUrl, BaseSettings, validator
+from pydantic import AnyHttpUrl, field_validator
+from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
@@ -33,7 +34,7 @@ class Settings(BaseSettings):
     enable_docs: bool = True
     enable_health_check: bool = True
 
-    @validator("cors_origins", pre=True)
+    @field_validator("cors_origins", mode="before")
     def assemble_cors_origins(cls, v: str | List[str]) -> List[str]:
         """Parse CORS origins from string or list."""
         if isinstance(v, str) and not v.startswith("["):
@@ -42,10 +43,10 @@ class Settings(BaseSettings):
             return v
         raise ValueError(v)
 
-    class Config:
-        """Pydantic config."""
-        env_file = ".env"
-        case_sensitive = False
+    model_config = {
+        "env_file": ".env",
+        "case_sensitive": False
+    }
 
 
 # Create global settings instance
