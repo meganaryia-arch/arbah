@@ -27,21 +27,48 @@ class Settings(BaseSettings):
 
     # API
     api_v1_prefix: str = "/api/v1"
-    cors_origins: List[AnyHttpUrl] = []
+    cors_origins_raw: str = ""
 
     # Feature flags
     enable_metrics: bool = True
     enable_docs: bool = True
     enable_health_check: bool = True
 
-    @field_validator("cors_origins", mode="before")
-    def assemble_cors_origins(cls, v: str | List[str]) -> List[str]:
-        """Parse CORS origins from string or list."""
-        if isinstance(v, str) and not v.startswith("["):
-            return [i.strip() for i in v.split(",")]
-        elif isinstance(v, (list, str)):
-            return v
-        raise ValueError(v)
+    @property
+    def cors_origins(self) -> List[str]:
+        """Parse CORS origins from raw string."""
+        v = self.cors_origins_raw.strip()
+        if not v:
+            return []
+
+        # Handle JSON array format
+        if v.startswith("["):
+            try:
+                import json
+                return json.loads(v)
+            except json.JSONDecodeError:
+                pass
+
+        # Handle comma-separated format
+        return [origin.strip() for origin in v.split(",") if origin.strip()]
+
+    def get_cors_origins(self) -> List[str]:
+        """Get CORS origins with environment-specific additions."""
+        origins = list(self.cors_origins)
+
+        # Add development-specific origins if in debug mode
+        if self.debug:
+            dev_origins = [
+                "http://localhost:5173",
+                "http://127.0.0.1:5173",
+                "http://localhost:3000",
+                "http://127.0.0.1:3000"
+            ]
+            for origin in dev_origins:
+                if origin not in origins:
+                    origins.append(origin)
+
+        return origins
 
     model_config = {
         "env_file": ".env",

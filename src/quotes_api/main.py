@@ -45,18 +45,11 @@ app = FastAPI(
 )
 
 # Add CORS middleware
-if settings.cors_origins:
-    # Convert URL objects to strings and handle trailing slashes
-    allowed_origins = [str(origin).rstrip('/') for origin in settings.cors_origins]
-    # For development, also allow common local ports
-    allowed_origins.extend([
-        "http://localhost:5173",
-        "http://127.0.0.1:5173"
-    ])
-
+cors_origins = settings.get_cors_origins()
+if cors_origins:
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=allowed_origins,
+        allow_origins=cors_origins,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
