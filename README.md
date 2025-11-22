@@ -1,4 +1,4 @@
-# Arbah Quotes API 🌸
+# Arbah 🌸
 
 Une API FastAPI élégante pour servir des citations inspirantes en français.
 
@@ -7,20 +7,20 @@ Une API FastAPI élégante pour servir des citations inspirantes en français.
 ![License](https://img.shields.io/badge/license-MIT-purple.svg)
 ![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)
 
+**Développé par :** Megan Aryia, Aina Papy, Mevasoa
+
 ## 📖 Description
 
-Arbah Quotes API est une application Python moderne construite avec FastAPI qui fournit des points d'accès pour récupérer, rechercher et explorer des citations inspirantes. L'API est conçue avec une architecture propre, des tests complets et des outils de développement modernes.
+Arbah est une application Python moderne construite avec FastAPI qui fournit des points d'accès pour récupérer, rechercher et explorer des citations inspirantes. L'API est conçue avec une architecture professionnelle, des tests complets et des outils de développement modernes.
 
 ### ✨ Caractéristiques
 
-- **Architecture Propre**: Structure de projet organisée avec séparation des responsabilités
+- **Architecture Professionnelle**: Structure de projet organisée avec séparation des responsabilités
 - **Tests Complets**: Tests unitaires et d'intégration avec pytest
 - **Documentation Auto-générée**: Documentation interactive avec Swagger/OpenAPI
 - **Qualité de Code**: Linting, formatage, et analyse statique configurés
 - **Configuration Centralisée**: Gestion des paramètres avec Pydantic
 - **Logging Structuré**: Logs formatés JSON avec structlog
-- **Support Docker**: Conteneurisation facile pour le déploiement
-- **CI/CD**: GitHub Actions pour l'intégration et le déploiement continus
 
 ## 🚀 Démarrage Rapide
 
@@ -33,7 +33,7 @@ Arbah Quotes API est une application Python moderne construite avec FastAPI qui 
 
 1. **Cloner le dépôt:**
    ```bash
-   git clone https://github.com/votre-username/arbah.git
+   git clone https://github.com/meganaryia-arch/arbah.git
    cd arabah
    ```
 
@@ -164,10 +164,6 @@ make run             # Run production server
 make test            # Run tests
 make test-cov        # Run tests with coverage
 
-# Docker
-make docker-build    # Build Docker image
-make docker-run      # Run Docker container
-
 # Cleanup
 make clean           # Clean temporary files
 ```
@@ -195,33 +191,8 @@ arbah/
 ├── .env.example               # Variables d'environnement
 ├── .flake8                    # Configuration flake8
 ├── .pre-commit-config.yaml    # Hooks pre-commit
-├── Dockerfile                 # Configuration Docker
 ├── Makefile                   # Commandes pratiques
 └── README.md                  # Documentation
-```
-
-## 🐳 Docker
-
-### Construction de l'image
-```bash
-make docker-build
-# ou
-docker build -t arabah-quotes-api .
-```
-
-### Exécution du conteneur
-```bash
-make docker-run
-# ou
-docker run -p 8000:8000 arabah-quotes-api
-```
-
-### Avec variables d'environnement
-```bash
-docker run -p 8000:8000 \
-  -e DEBUG=true \
-  -e LOG_LEVEL=INFO \
-  arabah-quotes-api
 ```
 
 ## 🔧 Configuration
@@ -230,7 +201,7 @@ docker run -p 8000:8000 \
 
 ```bash
 # Application
-APP_NAME=Arbah Quotes API
+APP_NAME=Arbah
 APP_VERSION=0.1.0
 DEBUG=false
 ENVIRONMENT=production
@@ -248,7 +219,6 @@ API_V1_PREFIX=/api/v1
 CORS_ORIGINS=["http://localhost:3000"]
 
 # Features
-ENABLE_METRICS=true
 ENABLE_DOCS=true
 ENABLE_HEALTH_CHECK=true
 ```
@@ -277,11 +247,11 @@ railway up
 ### Azure App Service
 ```bash
 # Créer les ressources
-az group create --name arabah-rg --location westeurope
-az webapp create --resource-group arabah-rg --plan arabah-plan --name votre-app
+az group create --name arabah-quotes-rg --location westeurope
+az webapp create --resource-group arabah-quotes-rg --plan arabah-quotes-plan --name votre-app
 
 # Déployer
-git azure webapp deployment source config-local-git --resource-group arabah-rg --name votre-app
+git azure webapp deployment source config-local-git --resource-group arabah-quotes-rg --name votre-app
 git push azure main
 ```
 
@@ -339,9 +309,9 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de 
 
 ## 📞 Contact
 
-- **Projet**: https://github.com/votre-username/arbah
-- **Issues**: https://github.com/votre-username/arbah/issues
-- **Email**: votre-email@example.com
+- **Projet**: https://github.com/meganaryia-arch/arbah
+- **Issues**: https://github.com/meganaryia-arch/arbah/issues
+- **Email**: megan.aryia@gmail.com, ainapappy@gmail.com, mandriantsiva@gmail.com
 
 ---
 

@@ -5,7 +5,7 @@ Quote business logic service.
 import random
 from typing import List, Optional
 
-from arbah.models.quote import Quote
+from quotes_api.models.quote import Quote
 
 
 class QuoteService:

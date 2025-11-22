@@ -1,12 +1,12 @@
 """
-Custom exceptions for Arbah Quotes API.
+Custom exceptions for Quotes API.
 """
 
 from typing import Any, Dict, Optional
 
 
-class ArbahException(Exception):
-    """Base exception for all Arbah application errors."""
+class QuotesAPIException(Exception):
+    """Base exception for all Quotes API application errors."""
 
     def __init__(
         self,
@@ -37,7 +37,7 @@ class ArbahException(Exception):
         }
 
 
-class QuoteNotFoundError(ArbahException):
+class QuoteNotFoundError(QuotesAPIException):
     """Exception raised when a quote is not found."""
 
     def __init__(self, quote_id: Optional[int] = None, query: Optional[str] = None):
@@ -61,7 +61,7 @@ class QuoteNotFoundError(ArbahException):
         super().__init__(message, error_code="QUOTE_NOT_FOUND", details=details)
 
 
-class ValidationError(ArbahException):
+class ValidationError(QuotesAPIException):
     """Exception raised for validation errors."""
 
     def __init__(self, message: str, field: Optional[str] = None, value: Any = None):
@@ -82,7 +82,7 @@ class ValidationError(ArbahException):
         super().__init__(message, error_code="VALIDATION_ERROR", details=details)
 
 
-class ConfigurationError(ArbahException):
+class ConfigurationError(QuotesAPIException):
     """Exception raised for configuration errors."""
 
     def __init__(self, message: str, config_key: Optional[str] = None):
@@ -100,7 +100,7 @@ class ConfigurationError(ArbahException):
         super().__init__(message, error_code="CONFIGURATION_ERROR", details=details)
 
 
-class ServiceUnavailableError(ArbahException):
+class ServiceUnavailableError(QuotesAPIException):
     """Exception raised when external services are unavailable."""
 
     def __init__(self, service_name: str, details: Optional[Dict[str, Any]] = None):
@@ -119,7 +119,7 @@ class ServiceUnavailableError(ArbahException):
         super().__init__(message, error_code="SERVICE_UNAVAILABLE", details=error_details)
 
 
-class RateLimitExceededError(ArbahException):
+class RateLimitExceededError(QuotesAPIException):
     """Exception raised when rate limits are exceeded."""
 
     def __init__(self, limit: int, window: int, reset_time: int):

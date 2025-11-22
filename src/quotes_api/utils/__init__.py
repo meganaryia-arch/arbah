@@ -1,10 +1,10 @@
 """
-Utility modules for Arbah Quotes API.
+Utility modules for Quotes API.
 """
 
 from .logger import get_logger, setup_logging
 from .exceptions import (
-    ArbahException,
+    QuotesAPIException,
     QuoteNotFoundError,
     ValidationError,
     ConfigurationError
@@ -13,7 +13,7 @@ from .exceptions import (
 __all__ = [
     "get_logger",
     "setup_logging",
-    "ArbahException",
+    "QuotesAPIException",
     "QuoteNotFoundError",
     "ValidationError",
     "ConfigurationError"

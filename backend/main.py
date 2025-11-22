@@ -2,17 +2,25 @@
 Backend entry point - redirects to the main application.
 
 This file is maintained for backward compatibility but the main application
-is now located in src/arbah/main.py
+is now located in src/quotes_api/main.py
 """
 
 import sys
 import os
+import importlib.util
 
-# Add src directory to Python path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
+# Load the main application directly from file
+current_dir = os.path.dirname(os.path.abspath(__file__))
+main_file = os.path.join(current_dir, '..', 'src', 'quotes_api', 'main.py')
 
-# Import and run the main application
-from arbah.main import app
+# Load the module dynamically
+spec = importlib.util.spec_from_file_location("quotes_api_main", main_file)
+module = importlib.util.module_from_spec(spec)
+sys.modules["quotes_api_main"] = module
+spec.loader.exec_module(module)
 
-# The app object is now imported from the main application
-# This allows both development servers to work the same way
+# Get the app object
+app = module.app
+
+# Export the app object for external use
+__all__ = ["app"]

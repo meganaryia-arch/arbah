@@ -9,11 +9,11 @@ from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from arbah.api.v1 import router as v1_router
-from arbah.config import settings
-from arbah.utils import setup_logging
-from arbah.utils.exceptions import ArbahException
-from arbah.utils.logger import get_logger, log_request_response
+from quotes_api.api.v1 import router as v1_router
+from quotes_api.config import settings
+from quotes_api.utils import setup_logging
+from quotes_api.utils.exceptions import QuotesAPIException
+from quotes_api.utils.logger import get_logger, log_request_response
 
 # Setup logging
 setup_logging()
@@ -23,14 +23,14 @@ logger = get_logger(__name__)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Application lifespan manager."""
-    logger.info("Starting Arbah Quotes API", version=settings.app_version)
+    logger.info("Starting Quotes API", version=settings.app_version)
 
     # Startup
     logger.info("Application started successfully")
     yield
 
     # Shutdown
-    logger.info("Shutting down Arbah Quotes API")
+    logger.info("Shutting down Quotes API")
 
 
 # Create FastAPI application
@@ -81,9 +81,9 @@ async def log_requests(request: Request, call_next):
 
 
 # Exception handlers
-@app.exception_handler(ArbahException)
-async def arabah_exception_handler(request: Request, exc: ArbahException):
-    """Handle custom Arbah exceptions."""
+@app.exception_handler(QuotesAPIException)
+async def quotes_api_exception_handler(request: Request, exc: QuotesAPIException):
+    """Handle custom Quotes API exceptions."""
     logger.error("Application error", exc_info=exc, **exc.to_dict())
     return JSONResponse(
         status_code=400,
@@ -118,7 +118,7 @@ app.include_router(v1_router, prefix=settings.api_v1_prefix)
 async def root():
     """Root endpoint with basic API information."""
     return {
-        "message": "Welcome to Arbah Quotes API",
+        "message": "Welcome to Quotes API",
         "version": settings.app_version,
         "docs": "/docs" if settings.enable_docs else None,
         "health": f"{settings.api_v1_prefix}/health",
@@ -137,7 +137,7 @@ if __name__ == "__main__":
     )
 
     uvicorn.run(
-        "arbah.main:app",
+        "quotes_api.main:app",
         host=settings.host,
         port=settings.port,
         reload=settings.debug,

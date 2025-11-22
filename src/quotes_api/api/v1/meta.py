@@ -4,8 +4,8 @@ Metadata and informational endpoints.
 
 from fastapi import APIRouter
 
-from arbah.config import settings
-from arbah.services.quote_service import QuoteService
+from quotes_api.config import settings
+from quotes_api.services.quote_service import QuoteService
 
 router = APIRouter(prefix="/meta", tags=["metadata"])
 quote_service = QuoteService()

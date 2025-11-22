@@ -7,7 +7,7 @@ from typing import Dict, Any
 
 from fastapi import APIRouter
 
-from arbah.config import settings
+from quotes_api.config import settings
 
 router = APIRouter(prefix="/health", tags=["health"])
 

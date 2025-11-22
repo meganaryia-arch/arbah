@@ -3,11 +3,13 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "arbah"
+name = "Arbah"
 version = "0.1.0"
 description = "A Python quotes API application"
 authors = [
-    {name = "Your Name", email = "your.email@example.com"}
+    {name = "Megan Aryia", email = "megan.aryia@gmail.com"},
+    {name = "Aina Papy", email = "ainapappy@gmail.com"},
+    {name = "Mevasoa", email = "mandriantsiva@gmail.com"}
 ]
 readme = "README.md"
 license = {text = "MIT"}
@@ -50,12 +52,12 @@ docs = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/arbah"
-Repository = "https://github.com/yourusername/arbah"
-Documentation = "https://yourusername.github.io/arbah"
+Homepage = "https://github.com/yourusername/quotes-api"
+Repository = "https://github.com/meganaryia-arch/arbah"
+Documentation = "https://github.com/meganaryia-arch/arbah/blob/main/README.md"
 
 [project.scripts]
-arbah = "arbah.main:main"
+quotes-api = "quotes_api.main:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -82,7 +84,7 @@ extend-exclude = '''
 profile = "black"
 multi_line_output = 3
 line_length = 88
-known_first_party = ["arbah"]
+known_first_party = ["quotes_api"]
 
 [tool.mypy]
 python_version = "3.8"
@@ -105,7 +107,7 @@ disallow_untyped_defs = false
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "-ra -q --strict-markers --strict-config --cov=arbah --cov-report=term-missing"
+addopts = "-ra -q --strict-markers --strict-config --cov=quotes_api --cov-report=term-missing"
 testpaths = ["tests"]
 python_files = ["test_*.py", "*_test.py"]
 python_classes = ["Test*"]

@@ -2,8 +2,7 @@
 Application settings and configuration.
 """
 
-import os
-from typing import List, Optional
+from typing import List
 
 from pydantic import AnyHttpUrl, BaseSettings, validator
 

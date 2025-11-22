@@ -6,8 +6,8 @@ from typing import List, Optional
 
 from fastapi import APIRouter, HTTPException, Query
 
-from arbah.models.quote import Quote, QuoteResponse, QuoteListResponse
-from arbah.services.quote_service import QuoteService
+from quotes_api.models.quote import Quote, QuoteResponse, QuoteListResponse
+from quotes_api.services.quote_service import QuoteService
 
 router = APIRouter(prefix="/quotes", tags=["quotes"])
 quote_service = QuoteService()

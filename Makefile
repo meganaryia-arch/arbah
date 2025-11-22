@@ -1,4 +1,4 @@
-.PHONY: help install install-dev test lint format clean run dev docker-build docker-run check
+.PHONY: help install install-dev test lint format clean run dev check
 
 # Default target
 help:
@@ -13,8 +13,6 @@ help:
 	@echo "  clean        Clean temporary files"
 	@echo "  run          Run production server"
 	@echo "  dev          Run development server with reload"
-	@echo "  docker-build Build Docker image"
-	@echo "  docker-run   Run Docker container"
 	@echo "  pre-commit   Install pre-commit hooks"
 
 # Installation
@@ -31,7 +29,7 @@ test:
 	pytest tests/ -v
 
 test-cov:
-	pytest tests/ --cov=arbah --cov-report=html --cov-report=term-missing -v
+	pytest tests/ --cov=quotes_api --cov-report=html --cov-report=term-missing -v
 
 test-watch:
 	pytest-watch tests/
@@ -50,10 +48,10 @@ check: lint test
 
 # Development
 dev:
-	python -m uvicorn arbah.main:app --reload --host 0.0.0.0 --port 8000
+	python -m uvicorn quotes_api.main:app --reload --host 0.0.0.0 --port 8000
 
 run:
-	python -m uvicorn arbah.main:app --host 0.0.0.0 --port 8000
+	python -m uvicorn quotes_api.main:app --host 0.0.0.0 --port 8000
 
 # Cleanup
 clean:
@@ -68,12 +66,6 @@ clean:
 	rm -rf .mypy_cache/
 	rm -rf bandit-report.json
 
-# Docker
-docker-build:
-	docker build -t arabah-quotes-api .
-
-docker-run:
-	docker run -p 8000:8000 arabah-quotes-api
 
 # Pre-commit
 pre-commit:

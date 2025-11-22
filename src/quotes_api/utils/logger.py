@@ -9,7 +9,7 @@ from typing import Any, Dict
 import structlog
 from structlog.stdlib import LoggerFactory
 
-from arbah.config import settings
+from quotes_api.config import settings
 
 
 def setup_logging() -> None:
