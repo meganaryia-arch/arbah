@@ -16,7 +16,7 @@ import { ref } from "vue";
 const quote = ref("Clique pour charger une citation…");
 
 async function fetchQuote() {
-  const res = await fetch("http://localhost:8000/api/v1/v1/quotes/random");
+  const res = await fetch("http://localhost:8000/api/v1/quotes/random");
   const data = await res.json();
   quote.value = data.quote;
 }

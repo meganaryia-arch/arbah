@@ -68,14 +68,14 @@ Arbah est une application Python moderne construite avec FastAPI qui fournit des
 ```bash
 make dev
 # ou
-python -m uvicorn arbah.main:app --reload
+python -m uvicorn backend.main:app --reload
 ```
 
 **Mode Production:**
 ```bash
 make run
 # ou
-python -m uvicorn arbah.main:app --host 0.0.0.0 --port 8000
+python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000
 ```
 
 L'API sera disponible sur `http://localhost:8000`
@@ -173,7 +173,7 @@ make clean           # Clean temporary files
 ```
 arbah/
 ├── src/
-│   └── arbah/
+│   └── quotes_api/
 │       ├── api/                 # Routes API
 │       │   └── v1/             # Version 1 de l'API
 │       ├── config/             # Configuration

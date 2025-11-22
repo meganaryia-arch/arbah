@@ -9,7 +9,7 @@ from .meta import router as meta_router
 # Create main v1 router
 from fastapi import APIRouter
 
-router = APIRouter(prefix="/v1", tags=["v1"])
+router = APIRouter(tags=["v1"])
 
 # Include sub-routers
 router.include_router(quotes_router, tags=["quotes"])
