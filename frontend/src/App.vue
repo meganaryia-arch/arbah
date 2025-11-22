@@ -4,6 +4,7 @@
 
     <div class="quote-box">
       <p>{{ quote }}</p>
+      <div>{{ author }}</div>
     </div>
 
     <button @click="fetchQuote">Nouvelle citation</button>
@@ -14,11 +15,13 @@
 import { ref } from "vue";
 
 const quote = ref("Clique pour charger une citation…");
+const author = ref("");
 
 async function fetchQuote() {
   const res = await fetch("http://localhost:8000/api/v1/quotes/random");
   const data = await res.json();
-  quote.value = data.quote;
+  quote.value = data.data.text;
+  author.value = data.data.author || "Inconnu";
 }
 
 fetchQuote();
