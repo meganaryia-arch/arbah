@@ -34,7 +34,7 @@ Arbah est une application Python moderne construite avec FastAPI qui fournit des
 1. **Cloner le dépôt:**
    ```bash
    git clone https://github.com/meganaryia-arch/arbah.git
-   cd arabah
+   cd arbah
    ```
 
 2. **Créer un environnement virtuel:**
@@ -247,11 +247,11 @@ railway up
 ### Azure App Service
 ```bash
 # Créer les ressources
-az group create --name arabah-quotes-rg --location westeurope
-az webapp create --resource-group arabah-quotes-rg --plan arabah-quotes-plan --name votre-app
+az group create --name arbah-quotes-rg --location westeurope
+az webapp create --resource-group arbah-quotes-rg --plan arbah-quotes-plan --name votre-app
 
 # Déployer
-git azure webapp deployment source config-local-git --resource-group arabah-quotes-rg --name votre-app
+git azure webapp deployment source config-local-git --resource-group arbah-quotes-rg --name votre-app
 git push azure main
 ```
 
