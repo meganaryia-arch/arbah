@@ -1,0 +1,320 @@
+// =============================================================================
+// ARBAH FRONTEND - STYLES PRINCIPAUX
+// Architecture professionnelle de niveau senior avec SCSS
+// =============================================================================
+
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'utilities' as *;
+
+// =============================================================================
+// STYLES GLOBAUX
+// =============================================================================
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: map-get($font-family, sans-serif, primary);
+  line-height: map-get($line-height, normal);
+  color: map-get($colors, gray, 900);
+  background-color: map-get($colors, gray, 50);
+}
+
+// =============================================================================
+// COMPOSANTS PRINCIPAUX
+// =============================================================================
+
+// Application principale
+.app {
+  min-height: 100vh;
+  @include gradient-bg(
+    map-get($colors, arbah, violet, light),
+    map-get($colors, arbah, violet, dark)
+  );
+  color: map-get($colors, gray, 900);
+}
+
+// Header
+.header {
+  text-align: center;
+  @include responsive-spacing(padding, 3rem 1rem 2rem);
+  color: white;
+
+  h1 {
+    font-size: map-get($font-size, 4xl);
+    font-weight: map-get($font-weight, bold);
+    margin-bottom: map-get($spacing, 2);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .subtitle {
+    font-size: map-get($font-size, xl);
+    opacity: 0.9;
+    font-weight: map-get($font-weight, light);
+  }
+}
+
+// Conteneur de citations
+.quote-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 map-get($spacing, 4);
+}
+
+// États de chargement
+.loading {
+  @include flex-center-column;
+  @include responsive-spacing(padding, 3rem);
+  color: white;
+
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid white;
+    border-radius: 50%;
+    @include animate(spin, 1s, linear infinite);
+    margin-bottom: map-get($spacing, 4);
+  }
+}
+
+// États d'erreur
+.error {
+  text-align: center;
+  @include responsive-spacing(padding, 2rem);
+  background: white;
+  @include card;
+  @include responsive-spacing(margin, 2rem 0);
+
+  p {
+    color: map-get($colors, error, 600);
+    font-size: map-get($font-size, lg);
+    margin-bottom: map-get($spacing, 4);
+  }
+
+  .retry-btn {
+    @include button-base;
+    @include button-size(12px, 24px, map-get($font-size, base));
+    @include button-variant(map-get($colors, error, 600));
+  }
+}
+
+// Carte de citation
+.quote-card {
+  @include card;
+  @include card-hover;
+  @include responsive-spacing(padding, 2.5rem);
+  @include responsive-spacing(margin, 2rem 0);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: map-get($spacing, 5);
+    font-size: 120px;
+    color: map-get($colors, gray, 100);
+    font-family: map-get($font-family, serif, primary);
+    z-index: 0;
+  }
+
+  .quote-text {
+    position: relative;
+    z-index: 1;
+    margin-bottom: map-get($spacing, 6);
+
+    p {
+      font-size: map-get($font-size, 2xl);
+      line-height: map-get($line-height, relaxed);
+      color: map-get($colors, gray, 800);
+      font-style: italic;
+      text-align: center;
+    }
+  }
+
+  .quote-meta {
+    @include flex-between;
+    flex-wrap: wrap;
+    gap: map-get($spacing, 4);
+    position: relative;
+    z-index: 1;
+
+    .author {
+      font-size: map-get($font-size, lg);
+      color: map-get($colors, gray, 600);
+      font-weight: map-get($font-weight, semibold);
+    }
+
+    .category {
+      @include badge(
+        map-get($colors, arbah, violet, gradient),
+        white
+      );
+    }
+  }
+}
+
+// Navigation
+.navigation {
+  @include flex-center;
+  gap: map-get($spacing, 4);
+  @include responsive-spacing(margin, 2rem 0);
+  flex-wrap: wrap;
+
+  .btn {
+    @include button-base;
+    @include button-size(14px, 28px, map-get($font-size, base));
+    font-weight: map-get($font-weight, semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    &.btn-primary {
+      @include button-variant(map-get($colors, arbah, green, primary));
+    }
+
+    &.btn-secondary {
+      @include button-variant(map-get($colors, secondary, 600));
+    }
+  }
+}
+
+// Section de toutes les citations
+.all-quotes {
+  @include responsive-spacing(margin, 3rem 0);
+  @include card;
+  @include responsive-spacing(padding, 2rem);
+
+  h2 {
+    text-align: center;
+    color: map-get($colors, gray, 800);
+    margin-bottom: map-get($spacing, 8);
+    font-size: map-get($font-size, 3xl);
+  }
+
+  .quotes-grid {
+    @include grid-responsive(auto-fit, map-get($spacing, 6));
+  }
+
+  .quote-item {
+    @include card;
+    border-left: 4px solid map-get($colors, arbah, green, primary);
+    padding: map-get($spacing, 6);
+    border-radius: map-get($border-radius, lg);
+    transition: all map-get($transition, normal) map-get($transition-timing, ease);
+    background: map-get($colors, gray, 50);
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: map-get($shadows, lg);
+    }
+
+    p {
+      font-size: map-get($font-size, base);
+      line-height: map-get($line-height, normal);
+      color: map-get($colors, gray, 800);
+      font-style: italic;
+      margin-bottom: map-get($spacing, 4);
+    }
+
+    .quote-item-meta {
+      @include flex-between;
+      flex-wrap: wrap;
+      gap: map-get($spacing, 2);
+
+      .author {
+        font-size: map-get($font-size, sm);
+        color: map-get($colors, gray, 600);
+        font-weight: map-get($font-weight, semibold);
+      }
+
+      .category {
+        background: map-get($colors, gray, 200);
+        color: map-get($colors, gray, 700);
+        padding: 4px 12px;
+        border-radius: map-get($border-radius, full);
+        font-size: map-get($font-size, xs);
+        font-weight: map-get($font-weight, semibold);
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+// Statut API
+.api-status {
+  @include flex-center;
+  gap: map-get($spacing, 2);
+  margin-top: map-get($spacing, 8);
+  padding: map-get($spacing, 4);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: map-get($border-radius, base);
+  @include glass-effect;
+  color: white;
+  font-size: map-get($font-size, sm);
+
+  .status-indicator {
+    @include status-indicator(white, 10px);
+
+    &.online {
+      background-color: map-get($colors, success, 500);
+    }
+
+    &.offline {
+      background-color: map-get($colors, error, 500);
+    }
+
+    &.checking {
+      background-color: map-get($colors, warning, 500);
+    }
+  }
+}
+
+// =============================================================================
+// RESPONSIVE DESIGN
+// =============================================================================
+
+@include mobile {
+  .header {
+    h1 {
+      font-size: map-get($font-size, 3xl);
+    }
+
+    .subtitle {
+      font-size: map-get($font-size, base);
+    }
+  }
+
+  .quote-card {
+    @include responsive-spacing(padding, 1.5rem);
+    @include responsive-spacing(margin, 1rem 0);
+
+    .quote-text p {
+      font-size: map-get($font-size, xl);
+    }
+  }
+
+  .navigation {
+    flex-direction: column;
+    align-items: center;
+
+    .btn {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+
+  .quotes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quote-meta {
+    flex-direction: column;
+    text-align: center;
+    gap: map-get($spacing, 3);
+  }
+}

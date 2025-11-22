@@ -1,0 +1,596 @@
+// =============================================================================
+// ARBAH FRONTEND - UTILITIES SCSS
+// Classes utilitaires atomiques pour un développement rapide
+// =============================================================================
+
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Reset et base
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: map-get($font-family, sans-serif, primary);
+  font-size: map-get($font-size, base);
+  line-height: map-get($line-height, normal);
+  color: map-get($colors, gray, 900);
+  background-color: map-get($colors, gray, 50);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  @include custom-scrollbar;
+}
+
+// Display utilities
+.d-none { display: none !important; }
+.d-block { display: block !important; }
+.d-inline { display: inline !important; }
+.d-inline-block { display: inline-block !important; }
+.d-flex { display: flex !important; }
+.d-grid { display: grid !important; }
+.d-hidden { visibility: hidden !important; }
+
+// Flexbox utilities
+.flex-row { flex-direction: row !important; }
+.flex-col { flex-direction: column !important; }
+.flex-wrap { flex-wrap: wrap !important; }
+.flex-nowrap { flex-wrap: nowrap !important; }
+
+.items-start { align-items: flex-start !important; }
+.items-end { align-items: flex-end !important; }
+.items-center { align-items: center !important; }
+.items-stretch { align-items: stretch !important; }
+.items-baseline { align-items: baseline !important; }
+
+.justify-start { justify-content: flex-start !important; }
+.justify-end { justify-content: flex-end !important; }
+.justify-center { justify-content: center !important; }
+.justify-between { justify-content: space-between !important; }
+.justify-around { justify-content: space-around !important; }
+.justify-evenly { justify-content: space-evenly !important; }
+
+.flex-1 { flex: 1 1 0% !important; }
+.flex-auto { flex: 1 1 auto !important; }
+.flex-initial { flex: 0 1 auto !important; }
+.flex-none { flex: none !important; }
+
+// Grid utilities
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
+.grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+.grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+.grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+.grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
+.grid-cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)) !important; }
+
+.col-span-1 { grid-column: span 1 / span 1 !important; }
+.col-span-2 { grid-column: span 2 / span 2 !important; }
+.col-span-3 { grid-column: span 3 / span 3 !important; }
+.col-span-4 { grid-column: span 4 / span 4 !important; }
+.col-span-5 { grid-column: span 5 / span 5 !important; }
+.col-span-6 { grid-column: span 6 / span 6 !important; }
+
+// Spacing utilities
+.m-0 { margin: map-get($spacing, 0) !important; }
+.m-1 { margin: map-get($spacing, 1) !important; }
+.m-2 { margin: map-get($spacing, 2) !important; }
+.m-3 { margin: map-get($spacing, 3) !important; }
+.m-4 { margin: map-get($spacing, 4) !important; }
+.m-5 { margin: map-get($spacing, 5) !important; }
+.m-6 { margin: map-get($spacing, 6) !important; }
+.m-8 { margin: map-get($spacing, 8) !important; }
+.m-10 { margin: map-get($spacing, 10) !important; }
+.m-12 { margin: map-get($spacing, 12) !important; }
+.m-16 { margin: map-get($spacing, 16) !important; }
+.m-20 { margin: map-get($spacing, 20) !important; }
+.m-24 { margin: map-get($spacing, 24) !important; }
+.m-32 { margin: map-get($spacing, 32) !important; }
+.m-40 { margin: map-get($spacing, 40) !important; }
+.m-48 { margin: map-get($spacing, 48) !important; }
+.m-56 { margin: map-get($spacing, 56) !important; }
+.m-64 { margin: map-get($spacing, 64) !important; }
+
+.mt-0 { margin-top: map-get($spacing, 0) !important; }
+.mt-1 { margin-top: map-get($spacing, 1) !important; }
+.mt-2 { margin-top: map-get($spacing, 2) !important; }
+.mt-3 { margin-top: map-get($spacing, 3) !important; }
+.mt-4 { margin-top: map-get($spacing, 4) !important; }
+.mt-5 { margin-top: map-get($spacing, 5) !important; }
+.mt-6 { margin-top: map-get($spacing, 6) !important; }
+.mt-8 { margin-top: map-get($spacing, 8) !important; }
+.mt-10 { margin-top: map-get($spacing, 10) !important; }
+.mt-12 { margin-top: map-get($spacing, 12) !important; }
+.mt-16 { margin-top: map-get($spacing, 16) !important; }
+.mt-20 { margin-top: map-get($spacing, 20) !important; }
+.mt-24 { margin-top: map-get($spacing, 24) !important; }
+.mt-32 { margin-top: map-get($spacing, 32) !important; }
+.mt-40 { margin-top: map-get($spacing, 40) !important; }
+.mt-48 { margin-top: map-get($spacing, 48) !important; }
+.mt-56 { margin-top: map-get($spacing, 56) !important; }
+.mt-64 { margin-top: map-get($spacing, 64) !important; }
+
+.mb-0 { margin-bottom: map-get($spacing, 0) !important; }
+.mb-1 { margin-bottom: map-get($spacing, 1) !important; }
+.mb-2 { margin-bottom: map-get($spacing, 2) !important; }
+.mb-3 { margin-bottom: map-get($spacing, 3) !important; }
+.mb-4 { margin-bottom: map-get($spacing, 4) !important; }
+.mb-5 { margin-bottom: map-get($spacing, 5) !important; }
+.mb-6 { margin-bottom: map-get($spacing, 6) !important; }
+.mb-8 { margin-bottom: map-get($spacing, 8) !important; }
+.mb-10 { margin-bottom: map-get($spacing, 10) !important; }
+.mb-12 { margin-bottom: map-get($spacing, 12) !important; }
+.mb-16 { margin-bottom: map-get($spacing, 16) !important; }
+.mb-20 { margin-bottom: map-get($spacing, 20) !important; }
+.mb-24 { margin-bottom: map-get($spacing, 24) !important; }
+.mb-32 { margin-bottom: map-get($spacing, 32) !important; }
+.mb-40 { margin-bottom: map-get($spacing, 40) !important; }
+.mb-48 { margin-bottom: map-get($spacing, 48) !important; }
+.mb-56 { margin-bottom: map-get($spacing, 56) !important; }
+.mb-64 { margin-bottom: map-get($spacing, 64) !important; }
+
+.ml-0 { margin-left: map-get($spacing, 0) !important; }
+.ml-1 { margin-left: map-get($spacing, 1) !important; }
+.ml-2 { margin-left: map-get($spacing, 2) !important; }
+.ml-3 { margin-left: map-get($spacing, 3) !important; }
+.ml-4 { margin-left: map-get($spacing, 4) !important; }
+.ml-5 { margin-left: map-get($spacing, 5) !important; }
+.ml-6 { margin-left: map-get($spacing, 6) !important; }
+.ml-8 { margin-left: map-get($spacing, 8) !important; }
+.ml-10 { margin-left: map-get($spacing, 10) !important; }
+.ml-12 { margin-left: map-get($spacing, 12) !important; }
+.ml-16 { margin-left: map-get($spacing, 16) !important; }
+.ml-20 { margin-left: map-get($spacing, 20) !important; }
+.ml-24 { margin-left: map-get($spacing, 24) !important; }
+.ml-32 { margin-left: map-get($spacing, 32) !important; }
+.ml-40 { margin-left: map-get($spacing, 40) !important; }
+.ml-48 { margin-left: map-get($spacing, 48) !important; }
+.ml-56 { margin-left: map-get($spacing, 56) !important; }
+.ml-64 { margin-left: map-get($spacing, 64) !important; }
+
+.mr-0 { margin-right: map-get($spacing, 0) !important; }
+.mr-1 { margin-right: map-get($spacing, 1) !important; }
+.mr-2 { margin-right: map-get($spacing, 2) !important; }
+.mr-3 { margin-right: map-get($spacing, 3) !important; }
+.mr-4 { margin-right: map-get($spacing, 4) !important; }
+.mr-5 { margin-right: map-get($spacing, 5) !important; }
+.mr-6 { margin-right: map-get($spacing, 6) !important; }
+.mr-8 { margin-right: map-get($spacing, 8) !important; }
+.mr-10 { margin-right: map-get($spacing, 10) !important; }
+.mr-12 { margin-right: map-get($spacing, 12) !important; }
+.mr-16 { margin-right: map-get($spacing, 16) !important; }
+.mr-20 { margin-right: map-get($spacing, 20) !important; }
+.mr-24 { margin-right: map-get($spacing, 24) !important; }
+.mr-32 { margin-right: map-get($spacing, 32) !important; }
+.mr-40 { margin-right: map-get($spacing, 40) !important; }
+.mr-48 { margin-right: map-get($spacing, 48) !important; }
+.mr-56 { margin-right: map-get($spacing, 56) !important; }
+.mr-64 { margin-right: map-get($spacing, 64) !important; }
+
+.mx-auto { margin-left: auto !important; margin-right: auto !important; }
+
+// Padding utilities
+.p-0 { padding: map-get($spacing, 0) !important; }
+.p-1 { padding: map-get($spacing, 1) !important; }
+.p-2 { padding: map-get($spacing, 2) !important; }
+.p-3 { padding: map-get($spacing, 3) !important; }
+.p-4 { padding: map-get($spacing, 4) !important; }
+.p-5 { padding: map-get($spacing, 5) !important; }
+.p-6 { padding: map-get($spacing, 6) !important; }
+.p-8 { padding: map-get($spacing, 8) !important; }
+.p-10 { padding: map-get($spacing, 10) !important; }
+.p-12 { padding: map-get($spacing, 12) !important; }
+.p-16 { padding: map-get($spacing, 16) !important; }
+.p-20 { padding: map-get($spacing, 20) !important; }
+.p-24 { padding: map-get($spacing, 24) !important; }
+.p-32 { padding: map-get($spacing, 32) !important; }
+.p-40 { padding: map-get($spacing, 40) !important; }
+.p-48 { padding: map-get($spacing, 48) !important; }
+.p-56 { padding: map-get($spacing, 56) !important; }
+.p-64 { padding: map-get($spacing, 64) !important; }
+
+.px-0 { padding-left: map-get($spacing, 0) !important; padding-right: map-get($spacing, 0) !important; }
+.px-1 { padding-left: map-get($spacing, 1) !important; padding-right: map-get($spacing, 1) !important; }
+.px-2 { padding-left: map-get($spacing, 2) !important; padding-right: map-get($spacing, 2) !important; }
+.px-3 { padding-left: map-get($spacing, 3) !important; padding-right: map-get($spacing, 3) !important; }
+.px-4 { padding-left: map-get($spacing, 4) !important; padding-right: map-get($spacing, 4) !important; }
+.px-5 { padding-left: map-get($spacing, 5) !important; padding-right: map-get($spacing, 5) !important; }
+.px-6 { padding-left: map-get($spacing, 6) !important; padding-right: map-get($spacing, 6) !important; }
+.px-8 { padding-left: map-get($spacing, 8) !important; padding-right: map-get($spacing, 8) !important; }
+.px-10 { padding-left: map-get($spacing, 10) !important; padding-right: map-get($spacing, 10) !important; }
+.px-12 { padding-left: map-get($spacing, 12) !important; padding-right: map-get($spacing, 12) !important; }
+.px-16 { padding-left: map-get($spacing, 16) !important; padding-right: map-get($spacing, 16) !important; }
+.px-20 { padding-left: map-get($spacing, 20) !important; padding-right: map-get($spacing, 20) !important; }
+.px-24 { padding-left: map-get($spacing, 24) !important; padding-right: map-get($spacing, 24) !important; }
+.px-32 { padding-left: map-get($spacing, 32) !important; padding-right: map-get($spacing, 32) !important; }
+.px-40 { padding-left: map-get($spacing, 40) !important; padding-right: map-get($spacing, 40) !important; }
+.px-48 { padding-left: map-get($spacing, 48) !important; padding-right: map-get($spacing, 48) !important; }
+.px-56 { padding-left: map-get($spacing, 56) !important; padding-right: map-get($spacing, 56) !important; }
+.px-64 { padding-left: map-get($spacing, 64) !important; padding-right: map-get($spacing, 64) !important; }
+
+.py-0 { padding-top: map-get($spacing, 0) !important; padding-bottom: map-get($spacing, 0) !important; }
+.py-1 { padding-top: map-get($spacing, 1) !important; padding-bottom: map-get($spacing, 1) !important; }
+.py-2 { padding-top: map-get($spacing, 2) !important; padding-bottom: map-get($spacing, 2) !important; }
+.py-3 { padding-top: map-get($spacing, 3) !important; padding-bottom: map-get($spacing, 3) !important; }
+.py-4 { padding-top: map-get($spacing, 4) !important; padding-bottom: map-get($spacing, 4) !important; }
+.py-5 { padding-top: map-get($spacing, 5) !important; padding-bottom: map-get($spacing, 5) !important; }
+.py-6 { padding-top: map-get($spacing, 6) !important; padding-bottom: map-get($spacing, 6) !important; }
+.py-8 { padding-top: map-get($spacing, 8) !important; padding-bottom: map-get($spacing, 8) !important; }
+.py-10 { padding-top: map-get($spacing, 10) !important; padding-bottom: map-get($spacing, 10) !important; }
+.py-12 { padding-top: map-get($spacing, 12) !important; padding-bottom: map-get($spacing, 12) !important; }
+.py-16 { padding-top: map-get($spacing, 16) !important; padding-bottom: map-get($spacing, 16) !important; }
+.py-20 { padding-top: map-get($spacing, 20) !important; padding-bottom: map-get($spacing, 20) !important; }
+.py-24 { padding-top: map-get($spacing, 24) !important; padding-bottom: map-get($spacing, 24) !important; }
+.py-32 { padding-top: map-get($spacing, 32) !important; padding-bottom: map-get($spacing, 32) !important; }
+.py-40 { padding-top: map-get($spacing, 40) !important; padding-bottom: map-get($spacing, 40) !important; }
+.py-48 { padding-top: map-get($spacing, 48) !important; padding-bottom: map-get($spacing, 48) !important; }
+.py-56 { padding-top: map-get($spacing, 56) !important; padding-bottom: map-get($spacing, 56) !important; }
+.py-64 { padding-top: map-get($spacing, 64) !important; padding-bottom: map-get($spacing, 64) !important; }
+
+// Text utilities
+.text-left { text-align: left !important; }
+.text-center { text-align: center !important; }
+.text-right { text-align: right !important; }
+.text-justify { text-align: justify !important; }
+
+.text-xs { font-size: map-get($font-size, xs) !important; }
+.text-sm { font-size: map-get($font-size, sm) !important; }
+.text-base { font-size: map-get($font-size, base) !important; }
+.text-lg { font-size: map-get($font-size, lg) !important; }
+.text-xl { font-size: map-get($font-size, xl) !important; }
+.text-2xl { font-size: map-get($font-size, '2xl') !important; }
+.text-3xl { font-size: map-get($font-size, '3xl') !important; }
+.text-4xl { font-size: map-get($font-size, '4xl') !important; }
+.text-5xl { font-size: map-get($font-size, '5xl') !important; }
+.text-6xl { font-size: map-get($font-size, '6xl') !important; }
+
+.font-thin { font-weight: map-get($font-weight, thin) !important; }
+.font-light { font-weight: map-get($font-weight, light) !important; }
+.font-normal { font-weight: map-get($font-weight, normal) !important; }
+.font-medium { font-weight: map-get($font-weight, medium) !important; }
+.font-semibold { font-weight: map-get($font-weight, semibold) !important; }
+.font-bold { font-weight: map-get($font-weight, bold) !important; }
+.font-extrabold { font-weight: map-get($font-weight, extrabold) !important; }
+.font-black { font-weight: map-get($font-weight, black) !important; }
+
+.leading-none { line-height: map-get($line-height, none) !important; }
+.leading-tight { line-height: map-get($line-height, tight) !important; }
+.leading-snug { line-height: map-get($line-height, snug) !important; }
+.leading-normal { line-height: map-get($line-height, normal) !important; }
+.leading-relaxed { line-height: map-get($line-height, relaxed) !important; }
+.leading-loose { line-height: map-get($line-height, loose) !important; }
+
+// Color utilities
+.text-current { color: currentColor !important; }
+.text-inherit { color: inherit !important; }
+.text-transparent { color: transparent !important; }
+
+.text-gray-50 { color: map-get($colors, gray, 50) !important; }
+.text-gray-100 { color: map-get($colors, gray, 100) !important; }
+.text-gray-200 { color: map-get($colors, gray, 200) !important; }
+.text-gray-300 { color: map-get($colors, gray, 300) !important; }
+.text-gray-400 { color: map-get($colors, gray, 400) !important; }
+.text-gray-500 { color: map-get($colors, gray, 500) !important; }
+.text-gray-600 { color: map-get($colors, gray, 600) !important; }
+.text-gray-700 { color: map-get($colors, gray, 700) !important; }
+.text-gray-800 { color: map-get($colors, gray, 800) !important; }
+.text-gray-900 { color: map-get($colors, gray, 900) !important; }
+.text-gray-950 { color: map-get($colors, gray, 950) !important; }
+
+.text-white { color: #ffffff !important; }
+.text-black { color: #000000 !important; }
+
+.text-primary-50 { color: map-get($colors, primary, 50) !important; }
+.text-primary-100 { color: map-get($colors, primary, 100) !important; }
+.text-primary-500 { color: map-get($colors, primary, 500) !important; }
+.text-primary-600 { color: map-get($colors, primary, 600) !important; }
+.text-primary-700 { color: map-get($colors, primary, 700) !important; }
+.text-primary-900 { color: map-get($colors, primary, 900) !important; }
+.text-primary-950 { color: map-get($colors, primary, 950) !important; }
+
+.text-success-500 { color: map-get($colors, success, 500) !important; }
+.text-success-600 { color: map-get($colors, success, 600) !important; }
+.text-success-700 { color: map-get($colors, success, 700) !important; }
+
+.text-warning-500 { color: map-get($colors, warning, 500) !important; }
+.text-warning-600 { color: map-get($colors, warning, 600) !important; }
+.text-warning-700 { color: map-get($colors, warning, 700) !important; }
+
+.text-error-500 { color: map-get($colors, error, 500) !important; }
+.text-error-600 { color: map-get($colors, error, 600) !important; }
+.text-error-700 { color: map-get($colors, error, 700) !important; }
+
+.bg-transparent { background-color: transparent !important; }
+.bg-current { background-color: currentColor !important; }
+.bg-inherit { background-color: inherit !important; }
+
+.bg-gray-50 { background-color: map-get($colors, gray, 50) !important; }
+.bg-gray-100 { background-color: map-get($colors, gray, 100) !important; }
+.bg-gray-200 { background-color: map-get($colors, gray, 200) !important; }
+.bg-gray-300 { background-color: map-get($colors, gray, 300) !important; }
+.bg-gray-400 { background-color: map-get($colors, gray, 400) !important; }
+.bg-gray-500 { background-color: map-get($colors, gray, 500) !important; }
+.bg-gray-600 { background-color: map-get($colors, gray, 600) !important; }
+.bg-gray-700 { background-color: map-get($colors, gray, 700) !important; }
+.bg-gray-800 { background-color: map-get($colors, gray, 800) !important; }
+.bg-gray-900 { background-color: map-get($colors, gray, 900) !important; }
+.bg-gray-950 { background-color: map-get($colors, gray, 950) !important; }
+
+.bg-white { background-color: #ffffff !important; }
+.bg-black { background-color: #000000 !important; }
+
+.bg-primary-50 { background-color: map-get($colors, primary, 50) !important; }
+.bg-primary-100 { background-color: map-get($colors, primary, 100) !important; }
+.bg-primary-500 { background-color: map-get($colors, primary, 500) !important; }
+.bg-primary-600 { background-color: map-get($colors, primary, 600) !important; }
+.bg-primary-700 { background-color: map-get($colors, primary, 700) !important; }
+.bg-primary-900 { background-color: map-get($colors, primary, 900) !important; }
+.bg-primary-950 { background-color: map-get($colors, primary, 950) !important; }
+
+.bg-success-50 { background-color: map-get($colors, success, 50) !important; }
+.bg-success-100 { background-color: map-get($colors, success, 100) !important; }
+.bg-success-500 { background-color: map-get($colors, success, 500) !important; }
+.bg-success-600 { background-color: map-get($colors, success, 600) !important; }
+.bg-success-700 { background-color: map-get($colors, success, 700) !important; }
+
+.bg-warning-50 { background-color: map-get($colors, warning, 50) !important; }
+.bg-warning-100 { background-color: map-get($colors, warning, 100) !important; }
+.bg-warning-500 { background-color: map-get($colors, warning, 500) !important; }
+.bg-warning-600 { background-color: map-get($colors, warning, 600) !important; }
+.bg-warning-700 { background-color: map-get($colors, warning, 700) !important; }
+
+.bg-error-50 { background-color: map-get($colors, error, 50) !important; }
+.bg-error-100 { background-color: map-get($colors, error, 100) !important; }
+.bg-error-500 { background-color: map-get($colors, error, 500) !important; }
+.bg-error-600 { background-color: map-get($colors, error, 600) !important; }
+.bg-error-700 { background-color: map-get($colors, error, 700) !important; }
+
+// Border utilities
+.border-0 { border-width: map-get($border-width, 0) !important; }
+.border { border-width: map-get($border-width, 1) !important; }
+.border-2 { border-width: map-get($border-width, 2) !important; }
+.border-4 { border-width: map-get($border-width, 4) !important; }
+.border-8 { border-width: map-get($border-width, 8) !important; }
+
+.border-t-0 { border-top-width: map-get($border-width, 0) !important; }
+.border-r-0 { border-right-width: map-get($border-width, 0) !important; }
+.border-b-0 { border-bottom-width: map-get($border-width, 0) !important; }
+.border-l-0 { border-left-width: map-get($border-width, 0) !important; }
+
+.rounded-none { border-radius: map-get($border-radius, none) !important; }
+.rounded-sm { border-radius: map-get($border-radius, sm) !important; }
+.rounded { border-radius: map-get($border-radius, base) !important; }
+.rounded-md { border-radius: map-get($border-radius, md) !important; }
+.rounded-lg { border-radius: map-get($border-radius, lg) !important; }
+.rounded-xl { border-radius: map-get($border-radius, xl) !important; }
+.rounded-2xl { border-radius: map-get($border-radius, '2xl') !important; }
+.rounded-3xl { border-radius: map-get($border-radius, '3xl') !important; }
+.rounded-full { border-radius: map-get($border-radius, full) !important; }
+
+// Shadow utilities
+.shadow-none { box-shadow: none !important; }
+.shadow-sm { box-shadow: map-get($shadows, sm) !important; }
+.shadow { box-shadow: map-get($shadows, base) !important; }
+.shadow-md { box-shadow: map-get($shadows, md) !important; }
+.shadow-lg { box-shadow: map-get($shadows, lg) !important; }
+.shadow-xl { box-shadow: map-get($shadows, xl) !important; }
+.shadow-2xl { box-shadow: map-get($shadows, '2xl') !important; }
+.shadow-inner { box-shadow: map-get($shadows, inner) !important; }
+
+// Opacity utilities
+.opacity-0 { opacity: 0 !important; }
+.opacity-25 { opacity: 0.25 !important; }
+.opacity-50 { opacity: 0.5 !important; }
+.opacity-75 { opacity: 0.75 !important; }
+.opacity-100 { opacity: 1 !important; }
+
+// Cursor utilities
+.cursor-auto { cursor: auto !important; }
+.cursor-default { cursor: default !important; }
+.cursor-pointer { cursor: pointer !important; }
+.cursor-not-allowed { cursor: not-allowed !important; }
+.cursor-wait { cursor: wait !important; }
+.cursor-text { cursor: text !important; }
+.cursor-move { cursor: move !important; }
+.cursor-help { cursor: help !important; }
+
+// Pointer events utilities
+.pointer-events-none { pointer-events: none !important; }
+.pointer-events-auto { pointer-events: auto !important; }
+
+// Position utilities
+.static { position: static !important; }
+.fixed { position: fixed !important; }
+.absolute { position: absolute !important; }
+.relative { position: relative !important; }
+.sticky { position: sticky !important; }
+
+// Z-index utilities
+.z-0 { z-index: map-get($z-index, hide) !important; }
+.z-10 { z-index: map-get($z-index, base) !important; }
+.z-20 { z-index: map-get($z-index, docked) !important; }
+.z-30 { z-index: map-get($z-index, dropdown) !important; }
+.z-40 { z-index: map-get($z-index, sticky) !important; }
+.z-50 { z-index: map-get($z-index, banner) !important; }
+.z-auto { z-index: auto !important; }
+
+// Width utilities
+.w-auto { width: auto !important; }
+.w-full { width: 100% !important; }
+.w-screen { width: 100vw !important; }
+.w-min-0 { min-width: 0 !important; }
+.w-min-full { min-width: 100% !important; }
+.w-max-0 { max-width: 0 !important; }
+.w-max-full { max-width: 100% !important; }
+
+// Height utilities
+.h-auto { height: auto !important; }
+.h-full { height: 100% !important; }
+.h-screen { height: 100vh !important; }
+.h-min-0 { min-height: 0 !important; }
+.h-min-full { min-height: 100% !important; }
+.h-max-0 { max-height: 0 !important; }
+.h-max-full { max-height: 100% !important; }
+
+// Overflow utilities
+.overflow-auto { overflow: auto !important; }
+.overflow-hidden { overflow: hidden !important; }
+.overflow-visible { overflow: visible !important; }
+.overflow-scroll { overflow: scroll !important; }
+.overflow-x-auto { overflow-x: auto !important; }
+.overflow-y-auto { overflow-y: auto !important; }
+.overflow-x-hidden { overflow-x: hidden !important; }
+.overflow-y-hidden { overflow-y: hidden !important; }
+.overflow-x-scroll { overflow-x: scroll !important; }
+.overflow-y-scroll { overflow-y: scroll !important; }
+
+// Transition utilities
+.transition-none { transition: none !important; }
+.transition-all { transition: all map-get($transition, normal) map-get($transition-timing, ease) !important; }
+.transition-colors { transition: color map-get($transition, normal) map-get($transition-timing, ease) !important; }
+.transition-opacity { transition: opacity map-get($transition, normal) map-get($transition-timing, ease) !important; }
+.transition-shadow { transition: box-shadow map-get($transition, normal) map-get($transition-timing, ease) !important; }
+.transition-transform { transition: transform map-get($transition, normal) map-get($transition-timing, ease) !important; }
+
+.duration-75 { transition-duration: 75ms !important; }
+.duration-100 { transition-duration: 100ms !important; }
+.duration-150 { transition-duration: map-get($transition, fast) !important; }
+.duration-200 { transition-duration: map-get($transition, normal) !important; }
+.duration-300 { transition-duration: map-get($transition, slow) !important; }
+.duration-500 { transition-duration: map-get($transition, slower) !important; }
+.duration-700 { transition-duration: 700ms !important; }
+.duration-1000 { transition-duration: map-get($transition, slower) !important; }
+
+// Transform utilities
+.transform { transform: translateX(var(--tw-translate-x, 0)) translateY(var(--tw-translate-y, 0)) rotate(var(--tw-rotate, 0)) skewX(var(--tw-skew-x, 0)) skewY(var(--tw-skew-y, 0)) scaleX(var(--tw-scale-x, 1)) scaleY(var(--tw-scale-y, 1)) !important; }
+.transform-none { transform: none !important; }
+
+.scale-0 { transform: scale(0) !important; }
+.scale-50 { transform: scale(0.5) !important; }
+.scale-75 { transform: scale(0.75) !important; }
+.scale-90 { transform: scale(0.9) !important; }
+.scale-95 { transform: scale(0.95) !important; }
+.scale-100 { transform: scale(1) !important; }
+.scale-105 { transform: scale(1.05) !important; }
+.scale-110 { transform: scale(1.1) !important; }
+.scale-125 { transform: scale(1.25) !important; }
+.scale-150 { transform: scale(1.5) !important; }
+
+.rotate-0 { transform: rotate(0deg) !important; }
+.rotate-45 { transform: rotate(45deg) !important; }
+.rotate-90 { transform: rotate(90deg) !important; }
+.rotate-180 { transform: rotate(180deg) !important; }
+.rotate-270 { transform: rotate(270deg) !important; }
+
+// Select utilities
+.select-none { user-select: none !important; }
+.select-text { user-select: text !important; }
+.select-all { user-select: all !important; }
+.select-auto { user-select: auto !important; }
+
+// Table utilities
+.table-auto { table-layout: auto !important; }
+.table-fixed { table-layout: fixed !important; }
+
+// Visibility utilities
+.invisible { visibility: hidden !important; }
+.visible { visibility: visible !important; }
+
+// Custom Arbah utilities
+.bg-arbah-gradient {
+  background: map-get($colors, arbah, violet, gradient) !important;
+}
+
+.text-arbah-green { color: map-get($colors, arbah, green, primary) !important; }
+
+.bg-arbah-green { background-color: map-get($colors, arbah, green, primary) !important; }
+
+.hover-lift {
+  transition: transform map-get($transition, normal) map-get($transition-timing, ease);
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.glass-effect {
+  @include glass-effect(10px, 0.1);
+}
+
+.pulse-animation {
+  @include animate(pulse, 2s, infinite);
+}
+
+.truncate {
+  @include truncate;
+}
+
+.truncate-2 {
+  @include truncate(2);
+}
+
+.truncate-3 {
+  @include truncate(3);
+}
+
+// Component-specific utilities
+.quote-card {
+  @include card;
+  @include card-hover;
+}
+
+.status-online {
+  @include status-indicator(map-get($colors, success, 500));
+}
+
+.status-offline {
+  @include status-indicator(map-get($colors, error, 500));
+}
+
+.status-checking {
+  @include status-indicator(map-get($colors, warning, 500));
+}
+
+.btn-primary {
+  @include button-base;
+  @include button-size(map-get($spacing, 4), map-get($spacing, 8), map-get($font-size, base));
+  @include button-variant(map-get($colors, arbah, green, primary), white, map-get($colors, arbah, green, hover), map-get($shadows, button));
+}
+
+.btn-secondary {
+  @include button-base;
+  @include button-size(map-get($spacing, 4), map-get($spacing, 8), map-get($font-size, base));
+  @include button-variant(map-get($colors, secondary, 500), white, map-get($colors, secondary, 600), map-get($shadows, button));
+}
+
+.btn-close {
+  @include button-base;
+  @include button-size(map-get($spacing, 3), map-get($spacing, 3), map-get($font-size, sm));
+  @include button-variant(map-get($colors, error, 500), white, map-get($colors, error, 600), map-get($shadows, button));
+  padding: map-get($spacing, 2);
+  border-radius: map-get($border-radius, full);
+}
+
+.loading-spinner {
+  @include animate(spin, 1s, linear);
+}
+
+// Responsive utilities
+@each $breakpoint, $value in $breakpoints {
+  @include respond-to($breakpoint) {
+    .hidden\+#{$value}- {
+      display: none !important;
+    }
+  }
+}
