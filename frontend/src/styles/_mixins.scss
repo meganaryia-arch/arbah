@@ -3,12 +3,13 @@
 // Mixins réutilisables pour un développement rapide et consistant
 // =============================================================================
 
+@use 'sass:map';
 @use 'variables' as *;
 
 // Mixin pour les media queries
 @mixin respond-to($breakpoint) {
-  @if map-has-key($breakpoints, $breakpoint) {
-    @media (min-width: map-get($breakpoints, $breakpoint)) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (min-width: map.get($breakpoints, $breakpoint)) {
       @content;
     }
   }
@@ -118,15 +119,15 @@
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: map-get($border-radius, base);
-  font-family: map-get($font-family, sans-serif, primary);
-  font-size: map-get($font-size, base);
-  font-weight: map-get($font-weight, 600);
+  border-radius: map.get($border-radius, base);
+  font-family: map.get($font-family, sans-serif, primary);
+  font-size: map.get($font-size, base);
+  font-weight: map.get($font-weight, 600);
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   cursor: pointer;
-  transition: all map-get($transition, normal) map-get($transition-timing, ease);
+  transition: all map.get($transition, normal) map.get($transition-timing, ease);
   user-select: none;
   outline: none;
   position: relative;
@@ -139,7 +140,7 @@
   }
 
   &:focus {
-    outline: 2px solid map-get($colors, primary, 500);
+    outline: 2px solid map.get($colors, primary, 500);
     outline-offset: 2px;
   }
 }
@@ -150,7 +151,7 @@
   line-height: 1.25;
 }
 
-@mixin button-variant($background, $color: white, $hover-bg: darken($background, 10%), $shadow: map-get($shadows, button)) {
+@mixin button-variant($background, $color: white, $hover-bg: darken($background, 10%), $shadow: map.get($shadows, button)) {
   background-color: $background;
   color: $color;
   box-shadow: $shadow;
@@ -158,7 +159,7 @@
   &:hover:not(:disabled) {
     background-color: $hover-bg;
     transform: translateY(-2px);
-    box-shadow: map-get($shadows, button-hover);
+    box-shadow: map.get($shadows, button-hover);
   }
 
   &:active:not(:disabled) {
@@ -170,55 +171,55 @@
 // Mixin pour les cartes
 @mixin card {
   background: white;
-  border-radius: map-get($border-radius, xl);
-  box-shadow: map-get($shadows, card);
+  border-radius: map.get($border-radius, xl);
+  box-shadow: map.get($shadows, card);
   overflow: hidden;
-  transition: all map-get($transition, normal) map-get($transition-timing, ease);
+  transition: all map.get($transition, normal) map.get($transition-timing, ease);
 }
 
 @mixin card-hover {
   &:hover {
     transform: translateY(-5px);
-    box-shadow: map-get($shadows, lg);
+    box-shadow: map.get($shadows, lg);
   }
 }
 
 // Mixin pour les inputs
 @mixin input-base {
   width: 100%;
-  padding: map-get($spacing, 3) map-get($spacing, 4);
-  border: map-get($border-width, 1) solid map-get($colors, gray, 300);
-  border-radius: map-get($border-radius, base);
-  font-family: map-get($font-family, sans-serif, primary);
-  font-size: map-get($font-size, base);
-  line-height: map-get($line-height, normal);
-  transition: all map-get($transition, normal) map-get($transition-timing, ease);
+  padding: map.get($spacing, 3) map.get($spacing, 4);
+  border: map.get($border-width, 1) solid map.get($colors, gray, 300);
+  border-radius: map.get($border-radius, base);
+  font-family: map.get($font-family, sans-serif, primary);
+  font-size: map.get($font-size, base);
+  line-height: map.get($line-height, normal);
+  transition: all map.get($transition, normal) map.get($transition-timing, ease);
 
   &:focus {
     outline: none;
-    border-color: map-get($colors, primary, 500);
-    box-shadow: 0 0 0 3px rgba(map-get($colors, primary, 500), 0.1);
+    border-color: map.get($colors, primary, 500);
+    box-shadow: 0 0 0 3px rgba(map.get($colors, primary, 500), 0.1);
   }
 
   &::placeholder {
-    color: map-get($colors, gray, 500);
+    color: map.get($colors, gray, 500);
   }
 }
 
 // Mixin pour les animations
-@mixin animate($name, $duration: map-get($transition, normal), $timing: map-get($transition-timing, ease)) {
+@mixin animate($name, $duration: map.get($transition, normal), $timing: map.get($transition-timing, ease)) {
   animation: $name $duration $timing;
 }
 
-@mixin fade-in($duration: map-get($transition, normal)) {
+@mixin fade-in($duration: map.get($transition, normal)) {
   @include animate(fadeIn, $duration);
 }
 
-@mixin slide-in-left($duration: map-get($transition, normal)) {
+@mixin slide-in-left($duration: map.get($transition, normal)) {
   @include animate(slideInLeft, $duration);
 }
 
-@mixin slide-in-right($duration: map-get($transition, normal)) {
+@mixin slide-in-right($duration: map.get($transition, normal)) {
   @include animate(slideInRight, $duration);
 }
 
@@ -245,13 +246,13 @@
 }
 
 // Mixin pour les grilles
-@mixin grid($columns: 1, $gap: map-get($spacing, 4)) {
+@mixin grid($columns: 1, $gap: map.get($spacing, 4)) {
   display: grid;
   grid-template-columns: repeat($columns, 1fr);
   gap: $gap;
 }
 
-@mixin grid-responsive($columns: 1, $gap: map-get($spacing, 4)) {
+@mixin grid-responsive($columns: 1, $gap: map.get($spacing, 4)) {
   display: grid;
   grid-template-columns: repeat($columns, 1fr);
   gap: $gap;
@@ -273,10 +274,10 @@
 @mixin badge($background, $color: white) {
   display: inline-flex;
   align-items: center;
-  padding: map-get($spacing, 1) map-get($spacing, 3);
-  border-radius: map-get($border-radius, full);
-  font-size: map-get($font-size, xs);
-  font-weight: map-get($font-weight, 600);
+  padding: map.get($spacing, 1) map.get($spacing, 3);
+  border-radius: map.get($border-radius, full);
+  font-size: map.get($font-size, xs);
+  font-weight: map.get($font-weight, 600);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   background-color: $background;
@@ -300,19 +301,19 @@
   &::after {
     content: $content;
     position: absolute;
-    bottom: calc(100% + map-get($spacing, 2));
+    bottom: calc(100% + map.get($spacing, 2));
     left: 50%;
     transform: translateX(-50%);
-    padding: map-get($spacing, 2) map-get($spacing, 3);
-    background-color: map-get($colors, gray, 900);
+    padding: map.get($spacing, 2) map.get($spacing, 3);
+    background-color: map.get($colors, gray, 900);
     color: white;
-    font-size: map-get($font-size, xs);
-    border-radius: map-get($border-radius, base);
+    font-size: map.get($font-size, xs);
+    border-radius: map.get($border-radius, base);
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    transition: opacity map-get($transition, normal) map-get($transition-timing, ease);
-    z-index: map-get($z-index, tooltip);
+    transition: opacity map.get($transition, normal) map.get($transition-timing, ease);
+    z-index: map.get($z-index, tooltip);
     pointer-events: none;
   }
 
@@ -339,21 +340,21 @@
   }
 
   &::-webkit-scrollbar-track {
-    background: map-get($colors, gray, 100);
-    border-radius: map-get($border-radius, full);
+    background: map.get($colors, gray, 100);
+    border-radius: map.get($border-radius, full);
   }
 
   &::-webkit-scrollbar-thumb {
-    background: map-get($colors, gray, 400);
-    border-radius: map-get($border-radius, full);
+    background: map.get($colors, gray, 400);
+    border-radius: map.get($border-radius, full);
 
     &:hover {
-      background: map-get($colors, gray, 500);
+      background: map.get($colors, gray, 500);
     }
   }
 
   &::-webkit-scrollbar-corner {
-    background: map-get($colors, gray, 100);
+    background: map.get($colors, gray, 100);
   }
 }
 
@@ -365,7 +366,7 @@
   right: 0;
   bottom: 0;
   background-color: $color;
-  z-index: map-get($z-index, overlay);
+  z-index: map.get($z-index, overlay);
 }
 
 // Mixin pour les textes accessibles

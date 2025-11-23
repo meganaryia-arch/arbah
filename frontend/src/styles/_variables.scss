@@ -3,6 +3,7 @@
 // Architecture professionnelle de niveau senior
 // =============================================================================
 
+@use 'sass:map';
 // Breakpoints pour responsive design
 $breakpoints: (
   xs: 0px,

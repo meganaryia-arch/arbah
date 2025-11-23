@@ -4,7 +4,6 @@ Application settings and configuration.
 
 from typing import List
 
-from pydantic import AnyHttpUrl, field_validator
 from pydantic_settings import BaseSettings
 
 

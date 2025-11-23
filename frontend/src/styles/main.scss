@@ -3,6 +3,7 @@
 // Architecture professionnelle de niveau senior avec SCSS
 // =============================================================================
 
+@use 'sass:map';
 @use 'variables' as *;
 @use 'mixins' as *;
 @use 'utilities' as *;
@@ -18,10 +19,10 @@
 }
 
 body {
-  font-family: map-get($font-family, sans-serif, primary);
-  line-height: map-get($line-height, normal);
-  color: map-get($colors, gray, 900);
-  background-color: map-get($colors, gray, 50);
+  font-family: map.get($font-family, sans-serif, primary);
+  line-height: map.get($line-height, normal);
+  color: map.get($colors, gray, 900);
+  background-color: map.get($colors, gray, 50);
 }
 
 // =============================================================================
@@ -32,10 +33,10 @@ body {
 .app {
   min-height: 100vh;
   @include gradient-bg(
-    map-get($colors, arbah, violet, light),
-    map-get($colors, arbah, violet, dark)
+    map.get($colors, arbah, violet, light),
+    map.get($colors, arbah, violet, dark)
   );
-  color: map-get($colors, gray, 900);
+  color: map.get($colors, gray, 900);
 }
 
 // Header
@@ -45,16 +46,16 @@ body {
   color: white;
 
   h1 {
-    font-size: map-get($font-size, 4xl);
-    font-weight: map-get($font-weight, bold);
-    margin-bottom: map-get($spacing, 2);
+    font-size: map.get($font-size, 4xl);
+    font-weight: map.get($font-weight, bold);
+    margin-bottom: map.get($spacing, 2);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   }
 
   .subtitle {
-    font-size: map-get($font-size, xl);
+    font-size: map.get($font-size, xl);
     opacity: 0.9;
-    font-weight: map-get($font-weight, light);
+    font-weight: map.get($font-weight, light);
   }
 }
 
@@ -62,7 +63,7 @@ body {
 .quote-container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 0 map-get($spacing, 4);
+  padding: 0 map.get($spacing, 4);
 }
 
 // États de chargement
@@ -78,7 +79,7 @@ body {
     border-top: 4px solid white;
     border-radius: 50%;
     @include animate(spin, 1s, linear infinite);
-    margin-bottom: map-get($spacing, 4);
+    margin-bottom: map.get($spacing, 4);
   }
 }
 
@@ -91,15 +92,15 @@ body {
   @include responsive-spacing(margin, 2rem 0);
 
   p {
-    color: map-get($colors, error, 600);
-    font-size: map-get($font-size, lg);
-    margin-bottom: map-get($spacing, 4);
+    color: map.get($colors, error, 600);
+    font-size: map.get($font-size, lg);
+    margin-bottom: map.get($spacing, 4);
   }
 
   .retry-btn {
     @include button-base;
-    @include button-size(12px, 24px, map-get($font-size, base));
-    @include button-variant(map-get($colors, error, 600));
+    @include button-size(12px, 24px, map.get($font-size, base));
+    @include button-variant(map.get($colors, error, 600));
   }
 }
 
@@ -116,22 +117,22 @@ body {
     content: '"';
     position: absolute;
     top: -20px;
-    left: map-get($spacing, 5);
+    left: map.get($spacing, 5);
     font-size: 120px;
-    color: map-get($colors, gray, 100);
-    font-family: map-get($font-family, serif, primary);
+    color: map.get($colors, gray, 100);
+    font-family: map.get($font-family, serif, primary);
     z-index: 0;
   }
 
   .quote-text {
     position: relative;
     z-index: 1;
-    margin-bottom: map-get($spacing, 6);
+    margin-bottom: map.get($spacing, 6);
 
     p {
-      font-size: map-get($font-size, 2xl);
-      line-height: map-get($line-height, relaxed);
-      color: map-get($colors, gray, 800);
+      font-size: map.get($font-size, 2xl);
+      line-height: map.get($line-height, relaxed);
+      color: map.get($colors, gray, 800);
       font-style: italic;
       text-align: center;
     }
@@ -140,19 +141,19 @@ body {
   .quote-meta {
     @include flex-between;
     flex-wrap: wrap;
-    gap: map-get($spacing, 4);
+    gap: map.get($spacing, 4);
     position: relative;
     z-index: 1;
 
     .author {
-      font-size: map-get($font-size, lg);
-      color: map-get($colors, gray, 600);
-      font-weight: map-get($font-weight, semibold);
+      font-size: map.get($font-size, lg);
+      color: map.get($colors, gray, 600);
+      font-weight: map.get($font-weight, semibold);
     }
 
     .category {
       @include badge(
-        map-get($colors, arbah, violet, gradient),
+        map.get($colors, arbah, violet, gradient),
         white
       );
     }
@@ -162,23 +163,23 @@ body {
 // Navigation
 .navigation {
   @include flex-center;
-  gap: map-get($spacing, 4);
+  gap: map.get($spacing, 4);
   @include responsive-spacing(margin, 2rem 0);
   flex-wrap: wrap;
 
   .btn {
     @include button-base;
-    @include button-size(14px, 28px, map-get($font-size, base));
-    font-weight: map-get($font-weight, semibold);
+    @include button-size(14px, 28px, map.get($font-size, base));
+    font-weight: map.get($font-weight, semibold);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 
     &.btn-primary {
-      @include button-variant(map-get($colors, arbah, green, primary));
+      @include button-variant(map.get($colors, arbah, green, primary));
     }
 
     &.btn-secondary {
-      @include button-variant(map-get($colors, secondary, 600));
+      @include button-variant(map.get($colors, secondary, 600));
     }
   }
 }
@@ -191,54 +192,54 @@ body {
 
   h2 {
     text-align: center;
-    color: map-get($colors, gray, 800);
-    margin-bottom: map-get($spacing, 8);
-    font-size: map-get($font-size, 3xl);
+    color: map.get($colors, gray, 800);
+    margin-bottom: map.get($spacing, 8);
+    font-size: map.get($font-size, 3xl);
   }
 
   .quotes-grid {
-    @include grid-responsive(auto-fit, map-get($spacing, 6));
+    @include grid-responsive(auto-fit, map.get($spacing, 6));
   }
 
   .quote-item {
     @include card;
-    border-left: 4px solid map-get($colors, arbah, green, primary);
-    padding: map-get($spacing, 6);
-    border-radius: map-get($border-radius, lg);
-    transition: all map-get($transition, normal) map-get($transition-timing, ease);
-    background: map-get($colors, gray, 50);
+    border-left: 4px solid map.get($colors, arbah, green, primary);
+    padding: map.get($spacing, 6);
+    border-radius: map.get($border-radius, lg);
+    transition: all map.get($transition, normal) map.get($transition-timing, ease);
+    background: map.get($colors, gray, 50);
 
     &:hover {
       transform: translateY(-5px);
-      box-shadow: map-get($shadows, lg);
+      box-shadow: map.get($shadows, lg);
     }
 
     p {
-      font-size: map-get($font-size, base);
-      line-height: map-get($line-height, normal);
-      color: map-get($colors, gray, 800);
+      font-size: map.get($font-size, base);
+      line-height: map.get($line-height, normal);
+      color: map.get($colors, gray, 800);
       font-style: italic;
-      margin-bottom: map-get($spacing, 4);
+      margin-bottom: map.get($spacing, 4);
     }
 
     .quote-item-meta {
       @include flex-between;
       flex-wrap: wrap;
-      gap: map-get($spacing, 2);
+      gap: map.get($spacing, 2);
 
       .author {
-        font-size: map-get($font-size, sm);
-        color: map-get($colors, gray, 600);
-        font-weight: map-get($font-weight, semibold);
+        font-size: map.get($font-size, sm);
+        color: map.get($colors, gray, 600);
+        font-weight: map.get($font-weight, semibold);
       }
 
       .category {
-        background: map-get($colors, gray, 200);
-        color: map-get($colors, gray, 700);
+        background: map.get($colors, gray, 200);
+        color: map.get($colors, gray, 700);
         padding: 4px 12px;
-        border-radius: map-get($border-radius, full);
-        font-size: map-get($font-size, xs);
-        font-weight: map-get($font-weight, semibold);
+        border-radius: map.get($border-radius, full);
+        font-size: map.get($font-size, xs);
+        font-weight: map.get($font-weight, semibold);
         text-transform: uppercase;
       }
     }
@@ -248,28 +249,28 @@ body {
 // Statut API
 .api-status {
   @include flex-center;
-  gap: map-get($spacing, 2);
-  margin-top: map-get($spacing, 8);
-  padding: map-get($spacing, 4);
+  gap: map.get($spacing, 2);
+  margin-top: map.get($spacing, 8);
+  padding: map.get($spacing, 4);
   background: rgba(255, 255, 255, 0.1);
-  border-radius: map-get($border-radius, base);
+  border-radius: map.get($border-radius, base);
   @include glass-effect;
   color: white;
-  font-size: map-get($font-size, sm);
+  font-size: map.get($font-size, sm);
 
   .status-indicator {
     @include status-indicator(white, 10px);
 
     &.online {
-      background-color: map-get($colors, success, 500);
+      background-color: map.get($colors, success, 500);
     }
 
     &.offline {
-      background-color: map-get($colors, error, 500);
+      background-color: map.get($colors, error, 500);
     }
 
     &.checking {
-      background-color: map-get($colors, warning, 500);
+      background-color: map.get($colors, warning, 500);
     }
   }
 }
@@ -281,11 +282,11 @@ body {
 @include mobile {
   .header {
     h1 {
-      font-size: map-get($font-size, 3xl);
+      font-size: map.get($font-size, 3xl);
     }
 
     .subtitle {
-      font-size: map-get($font-size, base);
+      font-size: map.get($font-size, base);
     }
   }
 
@@ -294,7 +295,7 @@ body {
     @include responsive-spacing(margin, 1rem 0);
 
     .quote-text p {
-      font-size: map-get($font-size, xl);
+      font-size: map.get($font-size, xl);
     }
   }
 
@@ -315,6 +316,6 @@ body {
   .quote-meta {
     flex-direction: column;
     text-align: center;
-    gap: map-get($spacing, 3);
+    gap: map.get($spacing, 3);
   }
 }
