@@ -1,0 +1,14 @@
+# Passenger WSGI configuration
+PassengerAppRoot /home/your_username/your_domain
+PassengerPython /home/your_username/your_domain/venv/bin/python
+PassengerAppType wsgi
+PassengerStartupFile passenger_wsgi.py
+
+# Enable Python applications
+Options +ExecCGI
+AddHandler cgi-script .py
+
+# URL rewriting for API
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ /passenger_wsgi.py/$1 [QSA,L]
