@@ -24,14 +24,14 @@
           <p>"{{ currentQuote.text }}"</p>
         </div>
         <div class="quote-meta">
-          <p class="author">— {{ currentQuote.author }}</p>
+          <p class="author"> — {{ currentQuote.author }}</p>
           <span v-if="currentQuote.category" class="category">{{ currentQuote.category }}</span>
         </div>
       </div>
 
       <!-- Navigation -->
       <div v-if="!loading && !error" class="navigation">
-        <button @click="fetchQuote" class="btn btn-primary">
+        <button @click="fetchRandomQuote" class="btn btn-primary">
           🎲 Citation aléatoire
         </button>
         <button @click="showAllQuotes = !showAllQuotes" class="btn btn-secondary">

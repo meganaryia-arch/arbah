@@ -7,13 +7,15 @@ import apiService from '@/services/api.service';
 
 export type ApiStatus = 'online' | 'offline' | 'checking';
 
+import type { Ref, ComputedRef } from 'vue';
+
 export interface UseApiStatusReturn {
   // State
-  apiStatus: ApiStatus;
-  apiStatusText: string;
-  isOnline: boolean;
-  isOffline: boolean;
-  isChecking: boolean;
+  apiStatus: Ref<ApiStatus>;
+  apiStatusText: ComputedRef<string>;
+  isOnline: ComputedRef<boolean>;
+  isOffline: ComputedRef<boolean>;
+  isChecking: ComputedRef<boolean>;
 
   // Methods
   checkApiStatus: () => Promise<void>;
@@ -24,7 +26,7 @@ export interface UseApiStatusReturn {
 export function useApiStatus(pollingInterval: number = 30000): UseApiStatusReturn {
   // State
   const apiStatus = ref<ApiStatus>('checking');
-  const statusPollingInterval = ref<NodeJS.Timeout | null>(null);
+  const statusPollingInterval = ref<number | null>(null);
 
   // Computed
   const apiStatusText = computed(() => {
