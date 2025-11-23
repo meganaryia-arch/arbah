@@ -2,20 +2,20 @@
  * Composable pour gérer la logique des citations
  */
 
-import { ref, computed } from 'vue';
+import { ref, computed, type Ref, type ComputedRef } from 'vue';
 import type { Quote, QuoteListResponse } from '@/config/api';
 import apiService from '@/services/api.service';
 
 export interface UseQuotesReturn {
   // State
-  currentQuote: Quote;
-  allQuotes: Quote[];
-  loading: boolean;
-  error: string | null;
+  currentQuote: Ref<Quote>;
+  allQuotes: Ref<Quote[]>;
+  loading: Ref<boolean>;
+  error: Ref<string | null>;
 
   // Computed
-  hasQuotes: boolean;
-  quoteCount: number;
+  hasQuotes: ComputedRef<boolean>;
+  quoteCount: ComputedRef<number>;
 
   // Methods
   fetchRandomQuote: () => Promise<void>;

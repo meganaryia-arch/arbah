@@ -4,6 +4,7 @@
 // =============================================================================
 
 @use 'sass:map';
+@use 'sass:color';
 @use 'variables' as *;
 
 // Mixin pour les media queries
@@ -151,7 +152,7 @@
   line-height: 1.25;
 }
 
-@mixin button-variant($background, $color: white, $hover-bg: darken($background, 10%), $shadow: map.get($shadows, button)) {
+@mixin button-variant($background, $color: white, $hover-bg: color.adjust($background, $lightness: -10%), $shadow: map.get($shadows, button)) {
   background-color: $background;
   color: $color;
   box-shadow: $shadow;
